@@ -1,0 +1,75 @@
+﻿@inject IJSRuntime JSRuntime
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Blazor_CMS</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="weather">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            @if (string.IsNullOrEmpty(accessToken))
+            {
+                <NavLink class="nav-link" href="LogIn">
+                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> LogIn
+                </NavLink>
+                <NavLink class="nav-link" href="Register">
+                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Register
+                </NavLink>
+                <h1>No Token Present</h1>
+            }
+            else
+            {
+                <NavLink class="nav-link" href="LogOut">
+                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> LogOut
+                </NavLink>
+                <h1>Token: @accessToken</h1>
+            }
+        </div>
+    </nav>
+</div>
+
+@code {
+    private string accessToken { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            try
+            {
+                // Retrieve the token from sessionStorage
+                if (JSRuntime is not null)
+                {
+                    accessToken = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
+                    StateHasChanged(); // Ensure UI updates after token retrieval
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving token: {ex.Message}");
+            }
+        }
+    }
+}

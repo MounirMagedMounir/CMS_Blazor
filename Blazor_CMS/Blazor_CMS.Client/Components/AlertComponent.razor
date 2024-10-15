@@ -1,0 +1,35 @@
+﻿@page "/Alert"
+@using Blazor_CMS.Client.Services
+
+@inject NotificationService NotificationService
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="alert alert-info" role="alert">
+        @message
+    </div>
+}
+
+@code {
+    private string message;
+
+    protected override void OnInitialized()
+    {
+        NotificationService.OnShow += ShowAlert;
+    }
+
+    private void ShowAlert(string message)
+    {
+        InvokeAsync(() =>
+        {
+            this.message = message;
+            StateHasChanged();
+        });
+    }
+
+    public void Dispose()
+    {
+        NotificationService.OnShow -= ShowAlert;
+    }
+}
+

@@ -1,0 +1,162 @@
+﻿@page "/Register"
+@namespace Blazor_CMS.Client.Pages.Authentication.Register
+@rendermode @(new InteractiveAutoRenderMode(false))
+@inject NotificationService NotificationService
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+
+<PageTitle>Register</PageTitle>
+
+<link href="css/AuthFormStyle.css" rel="stylesheet" />
+
+<Blazor_CMS.Client.Components.AlertComponent />
+
+<div class="container">
+    <div class="card shadow-lg rounded-lg bg-light animate__animated animate__fadeIn">
+        <div class="card-header bg-gradient-custom text-white text-center">
+            <h2 class="mb-0">Register</h2>
+        </div>
+        <div class="card-body p-4">
+            <EditForm EditContext="editContext" OnValidSubmit="Submit" FormName="RegisterForm">
+                <ValidationSummary />
+
+                <div class="form-group mb-3">
+                    <label for="Name">Name</label>
+                    <InputText class="form-control border-0 rounded-pill px-3" @bind-Value="userRequest.Name" placeholder="Enter your Name" />
+                    <ValidationMessage For="@(() => userRequest.Name)" />
+                    @if (Responses.ContainsKey(nameKey) && !string.IsNullOrEmpty(Responses[nameKey]))
+                    {
+                        <div class="validation-message text-danger">@Responses[nameKey]</div>
+                    }
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="UserName">UserName</label>
+                    <InputText class="form-control border-0 rounded-pill px-3" @bind-Value="userRequest.UserName" placeholder="Enter your UserName" />
+                    <ValidationMessage For="@(() => userRequest.UserName)" />
+                    @if (Responses.ContainsKey(userNameKey) && !string.IsNullOrEmpty(Responses[userNameKey]))
+                    {
+                        <div class="validation-message text-danger">@Responses[userNameKey]</div>
+                    }
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="Email">Email</label>
+                    <InputText class="form-control border-0 rounded-pill px-3" @bind-Value="userRequest.Email" placeholder="Enter your Email" />
+                    <ValidationMessage For="@(() => userRequest.Email)" />
+                    @if (Responses.ContainsKey(emailKey) && !string.IsNullOrEmpty(Responses[emailKey]))
+                    {
+                        <div class="validation-message text-danger">@Responses[emailKey]</div>
+                    }
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="Phone">Phone</label>
+                    <InputText class="form-control border-0 rounded-pill px-3" @bind-Value="userRequest.Phone" type="number" placeholder="Enter your Phone" />
+                    <ValidationMessage For="@(() => userRequest.Phone)" />
+                    @if (Responses.ContainsKey(phoneKey) && !string.IsNullOrEmpty(Responses[phoneKey]))
+                    {
+                        <div class="validation-message text-danger">@Responses[phoneKey]</div>
+                    }
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="Password">Password</label>
+                    <InputText class="form-control border-0 rounded-pill px-3" @bind-Value="userRequest.Password" type="password" placeholder="Enter your password" />
+                    <ValidationMessage For="@(() => userRequest.Password)" />
+                    @if (Responses.ContainsKey(passwordKey) && !string.IsNullOrEmpty(Responses[passwordKey]))
+                    {
+                        <div class="validation-message text-danger">@Responses[passwordKey]</div>
+                    }
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="ConfirmPassword">ConfirmPassword</label>
+                    <InputText class="form-control border-0 rounded-pill px-3" @bind-Value="userRequest.ConfirmPassword" type="password" placeholder="Enter your ConfirmPassword" />
+                    <ValidationMessage For="@(() => userRequest.ConfirmPassword)" />
+                    @if (Responses.ContainsKey(confirmPasswordKey) && !string.IsNullOrEmpty(Responses[confirmPasswordKey]))
+                    {
+                        <div class="validation-message text-danger">@Responses[confirmPasswordKey]</div>
+                    }
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-gradient-custom rounded-pill">Register</button>
+                </div>
+                <a href="/Login" class="text-center mt-3">Already have an account? Login</a>
+            </EditForm>
+        </div>
+    </div>
+</div>
+<script>
+    window.getUserAgent = function () {
+        return navigator.userAgent;
+    };
+</script>
+
+@code {
+    public string nameKey = "Name";
+    public string userNameKey = "UserName";
+    public string emailKey = "Email";
+    public string phoneKey = "Phone";
+    public string passwordKey = "Password";
+    public string confirmPasswordKey = "ConfirmPassword";
+
+    [Parameter]
+    public RegisterRequest userRequest { get; set; } = new RegisterRequest();
+    [Parameter]
+    public Dictionary<string, string> Responses { get; set; } = new()
+    {
+        { "Name", string.Empty },
+        { "UserName", string.Empty },
+        { "Email", string.Empty },
+        { "Phone", string.Empty },
+        { "Password", string.Empty },
+        { "ConfirmPassword", string.Empty }
+    };
+
+    private EditContext editContext;
+
+    [Inject]
+    private AuthenticationServices authServices { get; set; }
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(userRequest);
+    }
+
+    private async Task Submit()
+    {
+        Responses.Clear();
+
+        try
+        {
+            var apiResponses = await authServices.RegisterAsync(userRequest);
+
+            foreach (var response in apiResponses)
+            {
+                Responses[response.Key] = response.Value?.ToString();
+            }
+
+            if (Responses.ContainsKey("Alert"))
+            {
+                NotificationService.ShowMessage(Responses["Alert"]);
+                editContext.NotifyValidationStateChanged();
+            }
+            else if (Responses.ContainsKey("Success"))
+            {
+                // Register successful, navigate to home or another page
+                NavigationManager.NavigateTo("/EmailConfirmation");
+            }
+            else
+            {
+                editContext.NotifyValidationStateChanged();
+            }
+        }
+        catch (Exception ex)
+        {
+            NotificationService.ShowMessage($"Register failed: {ex.Message}");
+            editContext.NotifyValidationStateChanged();
+        }
+    }
+}

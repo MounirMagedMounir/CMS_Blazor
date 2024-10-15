@@ -1,0 +1,19 @@
+﻿@page "/LogOut"
+@namespace Blazor_CMS.Client.Pages.Authentication.LogOut
+@rendermode @(new InteractiveAutoRenderMode(false))
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+
+<h3>Loding......</h3>
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        await JSRuntime.InvokeVoidAsync("sessionStorage.removeItem", "Token");
+        await JSRuntime.InvokeVoidAsync("sessionStorage.removeItem", "RefreshToken");
+
+        // Navigate to login page or home
+        NavigationManager.NavigateTo("/login");
+    }
+}

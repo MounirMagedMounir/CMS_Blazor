@@ -1,0 +1,180 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Mounir\\Documents\\projects\\Sync\\C#\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Mounir\\Documents\\projects\\Sync\\C#\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS.Client\\Blazor_CMS.Client.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Mounir\\Documents\\projects\\Sync\\C#\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS.Client\\Blazor_CMS.Client.csproj",
+        "projectName": "Blazor_CMS.Client",
+        "projectPath": "C:\\Users\\Mounir\\Documents\\projects\\Sync\\C#\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS.Client\\Blazor_CMS.Client.csproj",
+        "packagesPath": "C:\\Users\\Mounir\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mounir\\Documents\\projects\\Sync\\C#\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS.Client\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Mounir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Components.WebAssembly": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.10, )",
+              "autoReferenced": true
+            },
+            "Microsoft.NET.Sdk.WebAssembly.Pack": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.10, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+              "version": "[8.0.10, 8.0.10]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "browser-wasm": {
+          "#import": []
+        }
+      }
+    },
+    "C:\\Users\\Mounir\\Documents\\projects\\Sync\\C#\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Mounir\\Documents\\projects\\Sync\\C#\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS.csproj",
+        "projectName": "Blazor_CMS",
+        "projectPath": "C:\\Users\\Mounir\\Documents\\projects\\Sync\\C#\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS.csproj",
+        "packagesPath": "C:\\Users\\Mounir\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mounir\\Documents\\projects\\Sync\\C#\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Mounir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\Mounir\\Documents\\projects\\Sync\\C#\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS.Client\\Blazor_CMS.Client.csproj": {
+                "projectPath": "C:\\Users\\Mounir\\Documents\\projects\\Sync\\C#\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS.Client\\Blazor_CMS.Client.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Components.WebAssembly.Server": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

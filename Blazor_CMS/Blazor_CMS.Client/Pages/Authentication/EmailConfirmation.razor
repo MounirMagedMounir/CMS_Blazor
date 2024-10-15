@@ -1,0 +1,96 @@
+﻿@page "/EmailConfirmation"
+@namespace Blazor_CMS.Client.Pages.Authentication.EmailConfirmation
+@rendermode @(new InteractiveAutoRenderMode(false))
+@inject NotificationService NotificationService
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+
+<PageTitle>EmailConfirmation</PageTitle>
+
+<link href="css/AuthFormStyle.css" rel="stylesheet" />
+
+<Blazor_CMS.Client.Components.AlertComponent />
+
+<div class="container">
+    <div class="card shadow-lg rounded-lg bg-light animate__animated animate__fadeIn">
+        <div class="card-header bg-gradient-custom text-white text-center">
+            <h2 class="mb-0">Log In</h2>
+        </div>
+        <div class="card-body p-4">
+            <EditForm EditContext="editContext" OnValidSubmit="Submit" FormName="EmailConfirmationForm">
+                <ValidationSummary />
+
+                <div class="form-group mb-3">
+                    <label for="EmailConfirmation">Email Confirmation</label>
+                    <InputText class="form-control border-0 rounded-pill px-3" @bind-Value="userRequest" placeholder="Enter your Email Confirmation" />
+                    <ValidationMessage For="@(() => userRequest)" />
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-gradient-custom rounded-pill">Confirmation</button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.getUserAgent = function () {
+        return navigator.userAgent;
+    };
+</script>
+
+@code {
+
+    [Parameter]
+    public string userRequest { get; set; } = string.Empty;
+
+    public Dictionary<string, string> Responses { get; set; } = new()
+    {
+        { "VerificationCode", string.Empty },
+    };
+
+    private EditContext editContext;
+
+    [Inject]
+    private AuthenticationServices authServices { get; set; }
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(userRequest);
+    }
+
+    private async Task Submit()
+    {
+        Responses.Clear();
+
+        try
+        {
+            var apiResponses = await authServices.EmailConfirmationAsync(userRequest);
+
+            foreach (var response in apiResponses)
+            {
+                Responses[response.Key] = response.Value?.ToString();
+            }
+
+            if (Responses.ContainsKey("Alert"))
+            {
+                NotificationService.ShowMessage(Responses["Alert"]);
+                editContext.NotifyValidationStateChanged();
+            }
+            else 
+            {
+                // Login successful, navigate to home or another page
+                NavigationManager.NavigateTo("/LogIn");
+            }
+           
+        }
+        catch (Exception ex)
+        {
+            // Handle exception (like network issues or bad response)
+            NotificationService.ShowMessage($"EmailConfirmation failed: {ex.Message}");
+            editContext.NotifyValidationStateChanged();
+        }
+    }
+
+
+}

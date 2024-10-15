@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Dto\**" />
+    <Compile Remove="FilterModels\**" />
+    <Compile Remove="Handlers\**" />
+    <Compile Remove="Middleware\**" />
+    <Compile Remove="Utilities\**" />
+    <Content Remove="Dto\**" />
+    <Content Remove="FilterModels\**" />
+    <Content Remove="Handlers\**" />
+    <Content Remove="Middleware\**" />
+    <Content Remove="Utilities\**" />
+    <EmbeddedResource Remove="Dto\**" />
+    <EmbeddedResource Remove="FilterModels\**" />
+    <EmbeddedResource Remove="Handlers\**" />
+    <EmbeddedResource Remove="Middleware\**" />
+    <EmbeddedResource Remove="Utilities\**" />
+    <None Remove="Dto\**" />
+    <None Remove="FilterModels\**" />
+    <None Remove="Handlers\**" />
+    <None Remove="Middleware\**" />
+    <None Remove="Utilities\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Blazor_CMS.Client\Blazor_CMS.Client.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.10" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.1" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Mounir\\Documents\\projects\\Sync\\C#\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "C:\\Users\\Mounir\\Documents\\projects\\Sync\\C#\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS.Client\\obj\\Debug\\net8.0\\compressed\\rlv2atzm4z.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "C:\\Users\\Mounir\\Documents\\projects\\Sync\\C#\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS.Client\\wwwroot\\appsettings.Development.json",
+      "PackagePath": "staticwebassets\\appsettings.Development.json"
+    },
+    {
+      "Id": "C:\\Users\\Mounir\\Documents\\projects\\Sync\\C#\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS.Client\\wwwroot\\appsettings.json",
+      "PackagePath": "staticwebassets\\appsettings.json"
+    },
+    {
+      "Id": "C:\\Users\\Mounir\\Documents\\projects\\Sync\\C#\\Blazor_CMS\\Blazor_CMS\\Blazor_CMS.Client\\wwwroot\\css\\AuthFormStyle.css",
+      "PackagePath": "staticwebassets\\css\\AuthFormStyle.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Blazor_CMS.Client.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Blazor_CMS.Client.props",
+      "PackagePath": "build\\Blazor_CMS.Client.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Blazor_CMS.Client.props",
+      "PackagePath": "buildMultiTargeting\\Blazor_CMS.Client.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Blazor_CMS.Client.props",
+      "PackagePath": "buildTransitive\\Blazor_CMS.Client.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

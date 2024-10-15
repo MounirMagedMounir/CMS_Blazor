@@ -1,0 +1,35 @@
+﻿@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.bg-gradient-custom {
+    background: linear-gradient(45deg, #4a69bd, #6a89cc); /* Match with nav gradient */
+}
+
+.btn-gradient-custom {
+    background: linear-gradient(45deg, #4a69bd, #6a89cc);
+    color: #fff;
+}
+
+.container {
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('https://source.unsplash.com/random/1600x900') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.card {
+    animation: fadeInUp 0.5s ease-in-out;
+    width: 100%; /* Full width of parent */
+    max-width: 600px; /* Responsive max width */
+}
